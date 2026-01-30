@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }} ❤️</h1>
+
+    <a href="/add-book">Add Book</a>
+
+    <h2>Your Books</h2>
+
+    {% if books %}
+        <ul>
+            {% for book in books %}
+
+                <li>
+                    <strong>{{ book.title }}</strong>
+                    by {{ book.author }} |
+                    {{ book.genre }} |
+                    Rating: {{ book.rating }}
+                </li>
+
+            {% endfor %}    
+        </ul>
+    {% else %}
+
+        <p>No books added yet</p>
+    {% endif %}
+
+    {% if recommended_genre %}
+    <h3>📌 Recommended for you</h3>
+    <p>You seem to enjoy <strong>{{ recommended_genre }}</strong> books ❤️</p>
+{% endif %}
+
+
+    <a href="/logout">Logout</a>
+</body>
+</html>
