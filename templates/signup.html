@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
-    <h1>Sign-up Page</h1>
+
+    <div class="auth-container"> 
+
+    <h2>Create your Saha account</h2>
+    <p class="tagline">Start your reading journey</p>
+
 
     <form method="POST" action="/signup">
 
@@ -22,5 +29,11 @@
         <button type="submit">Sign-up</button>
 
     </form>
+
+    <p class="switch">
+        Already have account? <a href="/login">Log in</a>
+    </p>
+
+    </div>
 </body>
 </html>

@@ -33,6 +33,27 @@
     <p>You seem to enjoy <strong>{{ recommended_genre }}</strong> books ❤️</p>
 {% endif %}
 
+{% if recommended_books %}
+<h2>Books you may like</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+
+    {% for book in recommended_books %}
+        <div style="width:150px; text-align:center;">
+
+            <img src="{{ book.thumbnail }}" width="120"><br>
+
+            <strong>{{ book.title }}</strong><br>
+            <small>{{ book.author }}</small>
+
+        </div>
+    {% endfor %}
+
+</div>
+{% endif %}
+
+
+
 
     <a href="/logout">Logout</a>
 </body>

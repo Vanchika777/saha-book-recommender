@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import session, redirect, url_for
 from collections import Counter
+import requests
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ class Book(db.Model):
 
 @app.route("/")
 def home():
-    return "welcome"
+    return render_template("welcome.html")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -73,6 +74,35 @@ def login():
     return render_template("login.html")
 
 
+def fetch_books_from_google(genre):
+    print("GENRE SENT TO GOOGLE:", genre)
+
+    url = f"https://www.googleapis.com/books/v1/volumes?q=subject:{genre}&maxResults=6"
+
+    response = requests.get(url)
+    data = response.json()
+
+    print("GOOGLE RESPONSE:", data)
+
+    books = []
+
+    if "items" in data:
+        for item in data["items"]:
+            volume = item["volumeInfo"]
+
+            title = volume.get("title", "No title")
+            authors = volume.get("authors", ["Unknown author"])
+            thumbnail = volume.get("imageLinks", {}).get("thumbnail", "")
+
+            books.append({
+                "title": title,
+                "author": authors[0],
+                "thumbnail": thumbnail 
+            })
+
+        return books
+    
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -83,13 +113,26 @@ def dashboard():
     books = Book.query.filter_by(user_id=user.id).all()
 
     recommended_genre = None
+
+    recommended_books = []
+
+
     if books:
-        genres = [book.genre for book in books if book.genre]
+        genres = [book.genre.split(",")[0].strip() for book in books if book.genre]
 
         if genres:
             recommended_genre = Counter(genres).most_common(1)[0][0]
 
-    return render_template("dashboard.html", user=user, books=books, recommended_genre=recommended_genre)
+
+    if recommended_genre and len(books) > 2:
+        recommended_books = fetch_books_from_google(recommended_genre)
+
+
+    return render_template("dashboard.html", 
+                           user=user, 
+                           books=books, 
+                           recommended_genre=recommended_genre,
+                           recommended_books = recommended_books)
 
 
 

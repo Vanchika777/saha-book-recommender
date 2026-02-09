@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saha — Your Reading Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="bg"></div>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+
+        <div class="glass-card">
+
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/saha_logo.png') }}" alt="saha_logo">
+            </div>
+
+            <h2>Hello, I'm Saha</h2>
+
+            <p class="tagline">
+                Your personal reading companion.<br>
+                I track what you read, what you love,<br>
+                and recommend what your mind will adore.
+            </p>
+
+            <p class="scroll-text">Scroll to begin ↓</p>
+
+        </div>
+
+    </section>
+
+    <!-- Login/Signup Section -->
+    <section class="auth-section">
+
+        <div class="glass-card auth-card">
+
+            <h2>Start your reading journey</h2>
+
+            <div class="buttons">
+                <a href="/login" class="btn">Login</a>
+                <a href="/signup" class="btn secondary">Sign Up</a>
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

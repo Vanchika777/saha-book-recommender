@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #90e0ef, #ffafcc, #c77dff);
+    background-size: 400% 400%;
+    font-family: cursive;
+    animation: gradientMove 10s ease infinite;
+}
+
+/* background animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* center section */
+.welcome-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* glass card */
+.glass-card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.25);
+    padding: 50px;
+    border-radius: 27px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+}
+
+/* logo */
+.logo {
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    width: 90px;
+    padding: 10px;
+    padding-left: 120px;
+}
+
+/* text */
+.tagline {
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+.scroll-text {
+    margin-top: 25px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* auth section */
+.auth-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card h2 {
+    margin-bottom: 25px;
+}
+
+/* buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    background:#ffc8dd;
+    backdrop-filter: blur(10px);
+    color:black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.08);
+    background: #caf0f8;
+}
+
+.secondary {
+    background:#ffc8dd;
+}
+
+.auth-container{
+    background: #fff0f3;
+    padding: 40px;
+    width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+.tagline {
+    color:gray;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+form input:focus {
+    outline: none;
+    border-color:chocolate;
+}
+
+button{
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background:bisque;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor:pointer;
+}
+
+button:hover {
+    background: #90e0ef;
+}
+
+.switch{
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.switch a{
+    text-decoration: none;
+    color:chocolate;
+    font-weight:600;
+}
+
