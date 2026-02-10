@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import session, redirect, url_for
 from collections import Counter
 import requests
 
@@ -27,7 +26,28 @@ class Book(db.Model):
     author = db.Column(db.String(150))
     genre = db.Column(db.String(100))
     rating = db.Column(db.Integer)
+    thumbnail = db.Column(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+
+
+def fetch_book_by_title(title):
+    url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{title}&maxResults=1"
+    
+    response = requests.get(url)
+    data = response.json()
+
+    if "items" in data:
+        book = data["items"][0]["volumeInfo"]
+
+        author = book.get("authors", ["Unknown"])[0]
+        thumbnail = book.get("imageLinks", {}).get("thumbnail", "")
+        genre_list = book.get("categories", ["General"])
+        genre = genre_list[0]
+
+        return author, thumbnail, genre
+
+    return "Unknown", "", "General"
+
 
 
 
@@ -41,6 +61,13 @@ def signup():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
+
+        #check if email already exists
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash("Email already registered. Please login.", "error")
+            return redirect(url_for("signup"))
+        
         hashed_password = generate_password_hash(password)
 
         new_user = User(
@@ -51,9 +78,11 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        print(User.query.all())
+        #auto login after signup
+        session["user_id"] = new_user.id
 
-        return "Signup successful ❤️"
+        flash("Signup successful! Welcome to Saha 💖", "success")
+        return redirect(url_for("dashboard"))
 
     return render_template("signup.html")
 
@@ -148,11 +177,16 @@ def add_book():
         genre = request.form["genre"]
         rating = request.form["rating"]
 
+        #fetch correct data from google
+        author, thumbnail, genre = fetch_book_by_title(title)
+
+
         new_book = Book(
             title=title,
             author=author,
             genre=genre,
             rating=rating,
+            thumbnail = thumbnail,
             user_id=session["user_id"]
         )
 

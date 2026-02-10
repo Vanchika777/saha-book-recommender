@@ -1,0 +1,97 @@
+/* ===== BODY BACKGROUND ===== */
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:cursive;
+
+    background: linear-gradient(135deg,#90e0ef,#ffafcc,#c77dff);
+    background-size:400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+/* background animation */
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+
+/* ===== SIGNUP CARD ===== */
+.auth-container{
+    backdrop-filter: blur(18px);
+    background: rgba(255,255,255,0.25);
+    padding-left:45px;
+    padding-right:45px;
+    padding-top:30px;
+    width:360px;
+    border-radius:25px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+/* heading */
+.auth-container h2{
+    margin-bottom:5px;
+}
+
+/* tagline */
+.tagline{
+    color:#555;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+
+/* ===== INPUT FIELDS ===== */
+form input{
+    width:100%;
+    padding:13px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ddd;
+    font-size:14px;
+    transition:0.3s;
+}
+
+form input:focus{
+    outline:none;
+    border-color:#c77dff;
+    box-shadow:0 0 6px rgba(199,125,255,0.4);
+}
+
+
+/* ===== BUTTON ===== */
+button{
+    width:100%;
+    padding:13px;
+    margin-top:15px;
+    border:none;
+    border-radius:12px;
+    background:#ffc8dd;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#caf0f8;
+    transform:scale(1.03);
+}
+
+
+/* ===== SWITCH TEXT ===== */
+.switch{
+    margin-top:20px;
+    font-size:14px;
+}
+
+.switch a{
+    text-decoration:none;
+    color:#9d4edd;
+    font-weight:bold;
+}

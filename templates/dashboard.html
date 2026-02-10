@@ -2,59 +2,119 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 </head>
 <body>
-    <h1>Welcome, {{ user.username }} ❤️</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-    <a href="/add-book">Add Book</a>
 
-    <h2>Your Books</h2>
+    <!-- welcome section -->
+    <div class="welcome">
+        <h1>Welcome back, {{ user.username }} ✨</h1>
+        <p class="sub">Your calm little reading universe</p>
+    </div>
+   
+    <!-- Top book carousel -->
+    <div class="top-section">
 
-    {% if books %}
-        <ul>
-            {% for book in books %}
+        <div class="section-title">
+            <h2>Your Books</h2>
+            <a href="/add-book" class="add-btn">+ Add Book</a>
+        </div>
 
-                <li>
-                    <strong>{{ book.title }}</strong>
-                    by {{ book.author }} |
-                    {{ book.genre }} |
-                    Rating: {{ book.rating }}
-                </li>
+        <div class="carousel">
 
-            {% endfor %}    
-        </ul>
-    {% else %}
+            {% if books %}
+                {% for book in books %}
 
-        <p>No books added yet</p>
-    {% endif %}
+                <div class="book-card">
+                    
+                    {% if book.thumbnail %}
+                        <img src="{{ book.thumbnail }}" class="book-img">
+                    {% else %}
+                        <div class="cover"></div>
+                    {% endif %}
 
-    {% if recommended_genre %}
-    <h3>📌 Recommended for you</h3>
-    <p>You seem to enjoy <strong>{{ recommended_genre }}</strong> books ❤️</p>
-{% endif %}
 
-{% if recommended_books %}
-<h2>Books you may like</h2>
+                    <h4>{{ book.title }}</h4>
+                    <p>{{ book.author }}</p>
+                </div>
 
-<div style="display:flex; flex-wrap:wrap; gap:20px;">
+                {% endfor %}
+            {% else %}
 
-    {% for book in recommended_books %}
-        <div style="width:150px; text-align:center;">
+            <!-- empty placeholders -->
+                {% for i in range(6) %}
+                <div class="book-card empty">
+                    <div class="cover"></div>
+                    <p>your future reads ✨</p>
+                </div>
+                {% endfor %}
 
-            <img src="{{ book.thumbnail }}" width="120"><br>
-
-            <strong>{{ book.title }}</strong><br>
-            <small>{{ book.author }}</small>
+            {% endif %}
 
         </div>
-    {% endfor %}
-
-</div>
-{% endif %}
+    </div>
 
 
+    <!-- MIDDLE SAHA CHAT -->
+    <div class="chat-section">
+
+        <div class="chat-card">
+            <h3>Saha is here 📚</h3>
+
+         {% if recommended_genre %}
+                <p>
+                So… you clearly love  
+                <strong>{{ recommended_genre }}</strong> books.  
+                I approve. Good taste. 😌
+                </p>
+            {% else %}
+                <p>Add books and I’ll start judging your taste lovingly.</p>
+        {% endif %}
+
+            <div class="chat-box">
+                <input type="text" placeholder="Ask Saha for recommendation...">
+                <button>Send</button>
+            </div>
+        </div>
+
+    </div>
 
 
-    <a href="/logout">Logout</a>
+    <!-- RECOMMENDATIONS -->
+    {% if recommended_books %}
+    <div class="rec-section">
+        <h2>Books you may like</h2>
+
+        <div class="rec-grid">
+            {% for book in recommended_books %}
+            <div class="rec-card">
+
+                <img src="{{ book.thumbnail }}">
+                <h4>{{ book.title }}</h4>
+                <p>{{ book.author }}</p>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+    <div class="logout">
+        <a href="/logout">logout</a>
+    </div>
 </body>
 </html>
+
+
+    

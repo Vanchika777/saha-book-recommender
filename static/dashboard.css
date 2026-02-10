@@ -1,0 +1,190 @@
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #90e0ef, #ffafcc, #c77dff);
+    background-size:400% 400%;
+    animation: gradientMove 10s ease infinite;
+    color:#333;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0%}
+    50%{background-position:100%}
+    100%{background-position:0%}
+}
+
+/* welcome */
+.welcome{
+    text-align:center;
+    margin-top:40px;
+}
+
+.sub{
+    opacity:0.7;
+}
+
+/* top section */
+.top-section{
+    width:90%;
+    margin:auto;
+    margin-top:40px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.add-btn{
+    text-decoration:none;
+    padding:10px 18px;
+    background:rgba(255,255,255,0.4);
+    border-radius:12px;
+    backdrop-filter:blur(10px);
+    color:black;
+}
+
+/* carousel */
+.carousel{
+    display:flex;
+    gap:25px;
+    overflow-x:auto;
+    padding:20px 0;
+}
+
+/* book cards */
+.book-card{
+    min-width:160px;
+    padding:15px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(15px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    text-align:center;
+}
+
+.book-card .cover{
+    height:180px;
+    background:#e6ccb2;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.empty{
+    opacity:0.6;
+}
+
+/* chat section */
+.chat-section{
+    display:flex;
+    justify-content:center;
+    margin-top:60px;
+}
+
+.chat-card{
+    width:500px;
+    padding:30px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(18px);
+    text-align:center;
+}
+
+.chat-box{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.chat-box input{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    border:none;
+}
+
+.chat-box button{
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    background:#ffc8dd;
+    cursor:pointer;
+}
+
+/* recommendation grid */
+.rec-section{
+    width:90%;
+    margin:auto;
+    margin-top:60px;
+}
+
+.rec-grid{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.rec-card{
+    width:160px;
+    padding:15px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(15px);
+    text-align:center;
+}
+
+.rec-card img{
+    width:120px;
+    border-radius:10px;
+}
+
+/* logout */
+.logout{
+    text-align:center;
+    margin:60px 0;
+}
+
+
+
+
+
+
+.flash{
+    position:fixed;
+    top:20px;
+    right:20px;
+    padding:15px 25px;
+    border-radius:12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.35);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    font-weight:bold;
+    z-index:999;
+    animation: fadeIn 0.6s ease;
+}
+
+.flash.success{
+    border-left:6px solid #80ed99;
+}
+
+.flash.error{
+    border-left:6px solid #ff4d6d;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(-20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+
+
+
+
+.book-img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-bottom:10px;
+}
