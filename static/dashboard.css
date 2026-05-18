@@ -64,8 +64,9 @@ body{
     text-align:center;
 }
 
-.book-card .cover{
-    height:180px;
+.cover{
+    width: 100%;
+    height: 220px;
     background:#e6ccb2;
     border-radius:12px;
     margin-bottom:10px;
@@ -135,8 +136,10 @@ body{
 }
 
 .rec-card img{
-    width:120px;
-    border-radius:10px;
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
 }
 
 /* logout */
@@ -145,15 +148,12 @@ body{
     margin:60px 0;
 }
 
-
-
-
-
-
 .flash{
     position:fixed;
-    top:20px;
+    top:30px;
     right:20px;
+    left:50%;
+    transform:translatex(-50%);
     padding:15px 25px;
     border-radius:12px;
     backdrop-filter: blur(10px);
@@ -177,14 +177,15 @@ body{
     to{opacity:1; transform:translateY(0);}
 }
 
-
-
-
-
-.book-img{
+.book-cover{
     width:100%;
-    height:200px;
+    height:220px;
     object-fit:cover;
     border-radius:12px;
     margin-bottom:10px;
+    display:block;
+}
+.rec-card .book-cover{
+    width:100%;
+    height:220px;
 }

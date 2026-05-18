@@ -93,3 +93,18 @@ button:hover{
     color:#9d4edd;
     font-weight:bold;
 }
+
+.flash {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.flash.success {
+    background: rgba(0, 255, 150, 0.15);
+    color: #00cc88;
+    border: 1px solid rgba(0, 255, 150, 0.3);
+}

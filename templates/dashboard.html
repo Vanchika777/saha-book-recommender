@@ -38,14 +38,14 @@
                 <div class="book-card">
                     
                     {% if book.thumbnail %}
-                        <img src="{{ book.thumbnail }}" class="book-img">
+                        <img src="{{ book.thumbnail }}" class="book-cover">
                     {% else %}
                         <div class="cover"></div>
                     {% endif %}
 
 
-                    <h4>{{ book.title }}</h4>
-                    <p>{{ book.author }}</p>
+                    <h4>{{ book["title"] }}</h4>
+                    <p>{{ book["author"] }}</p>
                 </div>
 
                 {% endfor %}
@@ -82,9 +82,28 @@
         {% endif %}
 
             <div class="chat-box">
-                <input type="text" placeholder="Ask Saha for recommendation...">
-                <button>Send</button>
+                <input type="text" id="userInput" placeholder="Ask Saha for something...">
+                <button onclick="sendMessage()">Send</button>
             </div>
+
+            <p id ="sahaReply"></p>
+
+            <script>
+            function sendMessage() {
+                let msg = document.getElementById("userInput").value;
+
+                fetch("/chat", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({message: msg})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("sahaReply").innerText = data.reply;
+                });
+            }
+            </script>
+            
         </div>
 
     </div>
@@ -99,7 +118,12 @@
             {% for book in recommended_books %}
             <div class="rec-card">
 
-                <img src="{{ book.thumbnail }}">
+                {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" class="book-cover">
+                {% else %}
+                    <div class="cover"></div>
+                {% endif %}
+
                 <h4>{{ book.title }}</h4>
                 <p>{{ book.author }}</p>
 

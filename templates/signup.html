@@ -18,13 +18,13 @@
     <form method="POST" action="/signup">
 
         <label>Username:</label><br>
-        <input type="text" name="username" placeholder="Enter your username"><br><br>
+        <input type="text" name="username" placeholder="Enter your username" minlength="3" required><br><br>
 
         <label>Email-ID:</label>
-        <input type="email" name="email" placeholder="Enter your Email-ID"><br><br>
+        <input type="email" name="email" placeholder="Enter your Email-ID" pattern=".+@gmail.com" required><br><br>
 
         <label>Password</label>
-        <input type="password" name="password" placeholder="Enter your Password"><br><br>
+        <input type="password" name="password" placeholder="Enter your Password" minlength="3" required><br><br>
 
         <button type="submit">Sign-up</button>
 

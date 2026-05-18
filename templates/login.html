@@ -1,35 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-</head>
-<body>
-
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='login.css') }}"
+    />
+  </head>
+  <body>
     <div class="auth-container">
+      <h2>Welcome back to Saha</h2>
+      <p class="tagline">Your reading companion</p>
 
-    
-        <h2>Welcome back to Saha</h2>
-        <p class="tagline">Your reading companion</p>
+      <form method="POST">
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% if messages %} 
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %} 
+            {% endif %} 
+        {% endwith %}
 
-    
-        <form method="POST">
+        <label>Email:</label><br /><br />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        /><br /><br />
 
-            <label>Email:</label><br><br>
-            <input type="email" name="email" placeholder="Enter your email" required><br><br>
+        <label>Password:</label><br /><br />
+        <input
+          type="password"
+          name="password"
+          placeholder="enter your password"
+          required
+        /><br /><br />
 
-            <label>Password:</label><br><br>
-            <input type="password" name="password" placeholder="enter your password" required><br><br>
+        <button type="submit">Login</button>
+      </form>
 
-            <button type="submit">Login</button>
-        </form>
-
-        <p class="switch">
-            New here? <a href="/signup">Create account</a>
-        </p>
-
+      <p class="switch">New here? <a href="/signup">Create account</a></p>
     </div>
-</body>
+  </body>
 </html>
